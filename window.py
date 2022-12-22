@@ -5,6 +5,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 BTN_COLOR = "background-color: rgb(58, 20, 60);color: rgb(255, 255, 255)"
 
+
 class Window(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -199,7 +200,7 @@ class Window(object):
         self.pushButton_tan.clicked.connect(lambda: self.tan())
         self.pushButton_cot.clicked.connect(lambda: self.cot())
         self.pushButton_dot.clicked.connect(lambda: self.writeSymbol(self.pushButton_dot.text()))
-        self.pushButton_log.clicked.connect(lambda: self.writeSymbol(self.pushButton_log.text()))
+        self.pushButton_log.clicked.connect(lambda: self.log())
         self.pushButton_cancel.clicked.connect(lambda: self.clearLabel())
         self.pushButton_result.clicked.connect(self.result)
 
@@ -213,26 +214,37 @@ class Window(object):
         number = self.label.text()
         self.clearLabel()
         self.label.setText(f"math.sqrt({number})")
+        self.result()
 
     def cos(self):
         number = self.label.text()
         self.clearLabel()
         self.label.setText(f"math.cos({number})")
+        self.result()
 
     def sin(self):
         number = self.label.text()
         self.clearLabel()
         self.label.setText(f"math.sin({number})")
+        self.result()
 
     def tan(self):
         number = self.label.text()
         self.clearLabel()
         self.label.setText(f"math.tan({number})")
+        self.result()
 
     def cot(self):
         number = self.label.text()
         self.clearLabel()
         self.label.setText(f"math.cos({number}) / math.sin({number})")
+        self.result()
+
+    def log(self):
+        number = self.label.text()
+        self.clearLabel()
+        self.label.setText(f"math.log10({number})")
+        self.result()
 
     def result(self):
         result = compile(self.label.text(), "<string>", "eval")
